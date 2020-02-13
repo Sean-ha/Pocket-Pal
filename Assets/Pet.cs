@@ -5,24 +5,21 @@ using UnityEngine;
 public class Pet : MonoBehaviour
 {
 
-    int i;
+    int movement, spr;
+    Sprite[] sprites;
 
     // Start is called before the first frame update
     void Start()
     {
-        i = Random.Range(0, 11);
-        InvokeRepeating("EverySecond", 0, 0.8f);
+        spr = 0;
+        movement = Random.Range(0, 16);
+        InvokeRepeating("Move", 0, 0.8f);
     }
 
-    // Update is called once per frame
-    void Update()
+    void Move()
     {
-
-    }
-
-    void EverySecond()
-    {
-        switch(i)
+        sprites = Data.petSprites;
+        switch (movement)
         {
             case 0: transform.position = new Vector3(-2.15f, 1, 0); break;
             case 1: transform.position = new Vector3(-1.24f, -1, 0); break;
@@ -34,9 +31,16 @@ public class Pet : MonoBehaviour
             case 7: transform.position = new Vector3(1.72f, -0.9f, 0); break;
             case 8: transform.position = new Vector3(-0.8f, -1.3f, 0); break;
             case 9: transform.position = new Vector3(-1.65f, 1.2f, 0); break;
-            case 10: transform.position = new Vector3(); break;
+            case 10: transform.position = new Vector3(-1.0f, 1.2f, 0); break;
+            case 11: transform.position = new Vector3(-0.7f, 1.1f, 0); break;
+            case 12: transform.position = new Vector3(-.4f, 1.2f, 0); break;
+            case 13: transform.position = new Vector3(-0.6f, 0.6f, 0); break;
+            case 14: transform.position = new Vector3(-0.6f, 0.98f, 0); break;
+            case 15: transform.position = new Vector3(); break;
         }
-        i++;
-        i %= 11;
+        movement = Random.Range(0, 16);
+
+        GetComponent<SpriteRenderer>().sprite = sprites[spr];
+        spr = Random.Range(0, sprites.Length);
     }
 }

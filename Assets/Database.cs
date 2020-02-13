@@ -32,6 +32,8 @@ public class Database
     public int timeAliveInSecs;
     public int refreshTimer;
 
+    public int spriteNum;
+
     public Database()
     {
         age = Data.age;
@@ -64,5 +66,7 @@ public class Database
         saveTime = Data.saveTime;
         timeAliveInSecs = Data.timeAliveInSecs;
         refreshTimer = ShopData.refreshTimer;
+
+        spriteNum = Data.spriteNum;
     }
 }

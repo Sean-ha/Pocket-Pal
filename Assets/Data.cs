@@ -35,6 +35,9 @@ public class Data : MonoBehaviour
     public static int timeAliveInSecs;
     public static double salarySecs;
 
+    public static Sprite[] petSprites;
+    public static int spriteNum = 5;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -73,7 +76,7 @@ public class Data : MonoBehaviour
         itemSpriteIndex = new List<int>();
 
         //temporary stats merely for testing purpoes.
-/*        petName = "name";
+/*      petName = "name";
         hunger = 100;
         age = 0;
         weight = 5;
@@ -94,6 +97,9 @@ public class Data : MonoBehaviour
 
         hungerDecrement = 100.0 / 86400.0;
         weightDecrement = 1.0 / 3600.0;
+
+        petSprites = Resources.LoadAll<Sprite>("pets/pet_" + spriteNum);
+        GameObject.Find("pet").GetComponent<SpriteRenderer>().sprite = petSprites[0];
     }
 
     // Update is called once per frame
@@ -145,6 +151,10 @@ public class Data : MonoBehaviour
             salary = 100;
             timeAliveInSecs = 0;
             salarySecs = salary / 3600.0;
+
+            //choose a random sprite to give the new pet.
+            //petSprites = Resources.LoadAll<Sprite>("pets/pet_" + spriteNum);
+
             SceneManager.LoadScene("EnterName");
         }
         else
@@ -165,6 +175,7 @@ public class Data : MonoBehaviour
             salary = database.salary;
             timeAliveInSecs = database.timeAliveInSecs;
             salarySecs = salary / 3600.0;
+            spriteNum = database.spriteNum;
             ShopData.refreshTimer = database.refreshTimer;
 
             foodInventory = database.foodInventory;
@@ -226,6 +237,11 @@ public class Data : MonoBehaviour
                 ShopData.refreshTimer = 14400;
                 ShopData.RefreshShop();
             }
+
+
+            //if enough time has passed, update spriteNum to simulate evolution.
+            //petSprites = Resources.LoadAll<Sprite>("pets/pet_" + spriteNum);
+            //GameObject.Find("pet").GetComponent<SpriteRenderer>().sprite = petSprites[0];
         }
     }
 
