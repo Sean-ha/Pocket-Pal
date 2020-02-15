@@ -4,20 +4,10 @@ using UnityEngine;
 
 public class BackButton : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnMouseDown()
     {
+        AudioSource audio = gameObject.AddComponent<AudioSource>();
+        audio.PlayOneShot((AudioClip)Resources.Load("sounds/click"));
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainScreen");
     }
 }

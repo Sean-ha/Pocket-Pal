@@ -4,6 +4,8 @@ public class Eat : MonoBehaviour
 {
     private void OnMouseUp()
     {
+        AudioSource audio = gameObject.AddComponent<AudioSource>();
+        audio.PlayOneShot((AudioClip)Resources.Load("sounds/click"));
         int index = EatMenuManager.current;
         string eaten = Data.foodInventory[index];
 

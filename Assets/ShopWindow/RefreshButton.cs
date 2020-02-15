@@ -29,7 +29,7 @@ public class RefreshButton : MonoBehaviour
     }
     public void CreateAndLoadRewardedAd()
     {
-        this.rewardedAd = new RewardedAd("ca-app-pub-3940256099942544/5224354917");
+        this.rewardedAd = new RewardedAd("ca-app-pub-4949264892672058/2140200494");
 
         // Create an empty ad request.
         AdRequest request = new AdRequest.Builder().Build();
@@ -44,6 +44,8 @@ public class RefreshButton : MonoBehaviour
 
     private void OnMouseUp()
     {
+        AudioSource audio = gameObject.AddComponent<AudioSource>();
+        audio.PlayOneShot((AudioClip)Resources.Load("sounds/click"));
         if (this.rewardedAd.IsLoaded())
             this.rewardedAd.Show();
     }

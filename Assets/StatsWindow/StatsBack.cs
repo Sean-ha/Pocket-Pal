@@ -5,19 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class StatsBack : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     void OnMouseUp()
     {
+        AudioSource audio = gameObject.AddComponent<AudioSource>();
+        audio.PlayOneShot((AudioClip)Resources.Load("sounds/click"));
         SceneManager.LoadScene("MainScreen");
     }
 }

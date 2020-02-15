@@ -6,7 +6,9 @@ public class InventoryUse : MonoBehaviour
 {
     private void OnMouseUp()
     {
-        if(!InventoryManager.empty)
+        AudioSource audio = gameObject.AddComponent<AudioSource>();
+        audio.PlayOneShot((AudioClip)Resources.Load("sounds/click"));
+        if (!InventoryManager.empty)
         {
             int index = InventoryManager.current;
             string used = Data.itemInventory[index];

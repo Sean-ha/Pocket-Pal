@@ -36,7 +36,12 @@ public class Data : MonoBehaviour
     public static double salarySecs;
 
     public static Sprite[] petSprites;
-    public static int spriteNum = 5;
+    public static int spriteNum;
+
+    private int timesOpened = 0;
+
+    public AudioClip[] songs;
+    AudioSource soundtrack;
 
     private void Awake()
     {
@@ -55,51 +60,17 @@ public class Data : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
-        //InvokeRepeating("SaveGame", 1.0f, 1.0f);
+        LoadGame();
+        timesOpened++;
+        InvokeRepeating("SaveGame", 1.0f, 1.0f);
         InvokeRepeating("EverySecond", 1.0f, 1.0f);
-        foodInventory = new List<string>();
-        foodQuantities = new List<int>();
-        foodInventorySprites = new List<Sprite>();
-        foodSpriteIndex = new List<int>();
 
-        foodSprites = Resources.LoadAll<Sprite>("food");
-
-        //the default infinite quantity foods
-        foreach (Sprite s in foodSprites)
-        {
-            foodInventorySprites.Add(s);
-        }
-
-        itemInventory = new List<string>();
-        itemQuantities = new List<int>();
-        itemSprites = new List<Sprite>();
-        itemSpriteIndex = new List<int>();
-
-        //temporary stats merely for testing purpoes.
-/*      petName = "name";
-        hunger = 100;
-        age = 0;
-        weight = 5;
-        money = 100000;
-        lifetimeMoney = 0;
-        profession = "None";
-        salary = 0;
-        strength = 0;
-        intelligence = 0;
-        luck = 0;
-        charisma = 0;
-        timeAliveInSecs = 0;*/
-
-        salarySecs = salary / 3600.0;
-
-        foodInventory.Add("Bread");
-        foodQuantities.Add(-1);
+        songs = Resources.LoadAll<AudioClip>("sounds/songs");
+        soundtrack = GetComponent<AudioSource>();
+        PlayNextSong();
 
         hungerDecrement = 100.0 / 86400.0;
         weightDecrement = 1.0 / 3600.0;
-
-        petSprites = Resources.LoadAll<Sprite>("pets/pet_" + spriteNum);
-        GameObject.Find("pet").GetComponent<SpriteRenderer>().sprite = petSprites[0];
     }
 
     // Update is called once per frame
@@ -107,6 +78,13 @@ public class Data : MonoBehaviour
     {
         if (hunger > 100)
             hunger = 100;
+    }
+
+    void PlayNextSong()
+    {
+        soundtrack.clip = songs[UnityEngine.Random.Range(0, songs.Length)];
+        soundtrack.Play();
+        Invoke("PlayNextSong", soundtrack.clip.length);
     }
 
     void EverySecond()
@@ -123,7 +101,7 @@ public class Data : MonoBehaviour
         age = timeAliveInSecs / 86400;
     }
 
-    public static void SaveGame()
+    public void SaveGame()
     {
         saveTime = System.DateTime.Now.ToOADate();
         SaveSystem.SaveData();
@@ -135,7 +113,26 @@ public class Data : MonoBehaviour
 
         Database database = SaveSystem.LoadData();
 
-        if(database == null)
+        foodInventory = new List<string>();
+        foodQuantities = new List<int>();
+        foodInventorySprites = new List<Sprite>();
+        foodSpriteIndex = new List<int>();
+        itemInventory = new List<string>();
+        itemQuantities = new List<int>();
+        itemSprites = new List<Sprite>();
+        itemSpriteIndex = new List<int>();
+
+        foodSprites = Resources.LoadAll<Sprite>("food");
+        //the default infinite quantity foods
+        foreach (Sprite s in foodSprites)
+        {
+            foodInventorySprites.Add(s);
+        }
+
+        foodInventory.Add("Bread");
+        foodQuantities.Add(-1);
+
+        if (database == null)
         {
             age = 0;
             strength = 0;
@@ -151,9 +148,7 @@ public class Data : MonoBehaviour
             salary = 100;
             timeAliveInSecs = 0;
             salarySecs = salary / 3600.0;
-
-            //choose a random sprite to give the new pet.
-            //petSprites = Resources.LoadAll<Sprite>("pets/pet_" + spriteNum);
+            spriteNum = UnityEngine.Random.Range(1, 4);
 
             SceneManager.LoadScene("EnterName");
         }
@@ -189,7 +184,6 @@ public class Data : MonoBehaviour
             ShopData.soldStatus = database.soldStatus;
             ShopData.inventoryIndices = database.inventoryIndices;
 
-            foodInventorySprites.Clear();
             foodInventorySprites.Add(foodSprites[0]);
 
             //the purchased foods sprites
@@ -238,21 +232,35 @@ public class Data : MonoBehaviour
                 ShopData.RefreshShop();
             }
 
-
-            //if enough time has passed, update spriteNum to simulate evolution.
-            //petSprites = Resources.LoadAll<Sprite>("pets/pet_" + spriteNum);
-            //GameObject.Find("pet").GetComponent<SpriteRenderer>().sprite = petSprites[0];
+            //if the pet is old enough for evolution and has not yet evolved, then evolve and get a job
+            if(age >= 7 && spriteNum <= 3)
+            {
+                spriteNum = UnityEngine.Random.Range(4, 10);
+                CalculateProfession();
+            }
         }
+        petSprites = Resources.LoadAll<Sprite>("pets/pet_" + spriteNum);
     }
 
-    private void OnApplicationPause()
+    private void OnApplicationPause(bool pause)
     {
-
+        //when user closes app
+        if(pause)
+        {
+            SaveGame();
+        }
     }
 
     private void OnApplicationFocus(bool focus)
     {
-
+        //when the user opens the app
+        if(focus && timesOpened != 0)
+        {
+            LoadGame();
+        } else if(!focus)
+        {
+            SaveGame();
+        }
     }
 
     public static void CalculateProfession()

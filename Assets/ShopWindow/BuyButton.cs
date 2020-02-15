@@ -6,6 +6,8 @@ public class BuyButton : MonoBehaviour
 {
     private void OnMouseUp()
     {
+        AudioSource audio = gameObject.AddComponent<AudioSource>();
+        audio.PlayOneShot((AudioClip)Resources.Load("sounds/click"));
         int curr = ShopManager.toBe;
         if (!ShopData.soldStatus[curr] && Data.money >= ShopData.currentCosts[curr])
         {
