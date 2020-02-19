@@ -60,6 +60,9 @@ public class Data : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
+        hungerDecrement = 100.0 / 86400.0;
+        weightDecrement = 1.0 / 3600.0;
+
         LoadGame();
         timesOpened++;
         InvokeRepeating("SaveGame", 1.0f, 1.0f);
@@ -69,8 +72,6 @@ public class Data : MonoBehaviour
         soundtrack = GetComponent<AudioSource>();
         PlayNextSong();
 
-        hungerDecrement = 100.0 / 86400.0;
-        weightDecrement = 1.0 / 3600.0;
     }
 
     // Update is called once per frame
