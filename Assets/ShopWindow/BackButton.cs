@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BackButton : MonoBehaviour
 {
-    private void OnMouseDown()
+    private void OnMouseUp()
     {
         AudioSource audio = gameObject.AddComponent<AudioSource>();
         audio.PlayOneShot((AudioClip)Resources.Load("sounds/click"));
