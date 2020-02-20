@@ -26,6 +26,7 @@ public class Data : MonoBehaviour
     
 
     public static string profession;
+    public static int initialSalary;
     public static int salary;
 
     public static double saveTime;
@@ -79,6 +80,7 @@ public class Data : MonoBehaviour
     {
         if (hunger > 100)
             hunger = 100;
+        salary = initialSalary + ((strength + intelligence + luck + charisma) / 4);
     }
 
     void PlayNextSong()
@@ -124,11 +126,10 @@ public class Data : MonoBehaviour
         itemSpriteIndex = new List<int>();
 
         foodSprites = Resources.LoadAll<Sprite>("food");
-        //the default infinite quantity foods
-        foreach (Sprite s in foodSprites)
-        {
-            foodInventorySprites.Add(s);
-        }
+
+        //adds the bread sprite
+        foodInventorySprites.Add(foodSprites[0]);
+        
 
         foodInventory.Add("Bread");
         foodQuantities.Add(-1);
@@ -146,7 +147,7 @@ public class Data : MonoBehaviour
             money = 5000;
             lifetimeMoney = 5000;
             profession = "Baby";
-            salary = 100;
+            initialSalary = 100;
             timeAliveInSecs = 0;
             salarySecs = salary / 3600.0;
             spriteNum = UnityEngine.Random.Range(1, 4);
@@ -168,6 +169,7 @@ public class Data : MonoBehaviour
             money = database.money;
             lifetimeMoney = database.lifetimeMoney;
             profession = database.profession;
+            initialSalary = database.initialSalary;
             salary = database.salary;
             timeAliveInSecs = database.timeAliveInSecs;
             salarySecs = salary / 3600.0;
@@ -185,7 +187,6 @@ public class Data : MonoBehaviour
             ShopData.soldStatus = database.soldStatus;
             ShopData.inventoryIndices = database.inventoryIndices;
 
-            foodInventorySprites.Add(foodSprites[0]);
 
             //the purchased foods sprites
             foreach (int i in foodSpriteIndex)
@@ -203,7 +204,6 @@ public class Data : MonoBehaviour
             //inserts sprites for purchased items
             foreach (int i in itemSpriteIndex)
                 itemSprites.Add(ShopData.inventorySprites[i]);
-
 
             double hungerBeforeUpdate = hunger;
             double timeBeforeHungerReachedZero = elapsedTimeSecs;
@@ -272,19 +272,19 @@ public class Data : MonoBehaviour
             {
                 //strength and intelligence
                 profession = "Boss";
-                salary = 550;
+                initialSalary = 550;
             }
             else if (luck >= intelligence && luck >= charisma)
             {
                 //strength and luck
                 profession = "Pirate";
-                salary = 675;
+                initialSalary = 675;
             }
             else if (charisma >= intelligence && charisma >= luck)
             {
                 //strength and charisma
                 profession = "Athlete";
-                salary = 510;
+                initialSalary = 510;
             }
         }
         else if (intelligence >= strength && intelligence >= luck && intelligence >= charisma)
@@ -293,19 +293,19 @@ public class Data : MonoBehaviour
             {
                 //intelligence and strength
                 profession = "Captain";
-                salary = 560;
+                initialSalary = 560;
             }
             else if (luck >= strength && luck >= charisma)
             {
                 //intelligence and luck
                 profession = "Scientist";
-                salary = 525;
+                initialSalary = 525;
             }
             else if (charisma >= strength && charisma >= luck)
             {
                 //intelligence and charisma
                 profession = "King";
-                salary = 650;
+                initialSalary = 650;
             }
         }
         else if (luck >= strength && luck >= intelligence && luck >= charisma)
@@ -314,19 +314,19 @@ public class Data : MonoBehaviour
             {
                 //luck and strength
                 profession = "Rogue";
-                salary = 515;
+                initialSalary = 515;
             }
             else if (intelligence >= strength && intelligence >= charisma)
             {
                 //luck and intelligence
                 profession = "Gambler";
-                salary = 625;
+                initialSalary = 625;
             }
             else if (charisma >= strength && charisma >= luck)
             {
                 //luck and charisma
                 profession = "Idol";
-                salary = 590;
+                initialSalary = 590;
             }
         }
         else if (charisma >= strength && charisma >= intelligence && charisma >= luck)
@@ -335,21 +335,21 @@ public class Data : MonoBehaviour
             {
                 //charisma and strength
                 profession = "Wrestler";
-                salary = 500;
+                initialSalary = 500;
             }
             else if (intelligence >= strength && intelligence >= luck)
             {
                 //charisma and intelligence
                 profession = "Spy";
-                salary = 535;
+                initialSalary = 535;
             }
             else if (luck >= strength && luck >= intelligence)
             {
                 //charisma and luck
                 profession = "Celebrity";
-                salary = 575;
+                initialSalary = 575;
             }
         }
-        salary += (strength + intelligence + luck + charisma) / 4;
+        salary = initialSalary + ((strength + intelligence + luck + charisma) / 4);
     }
 }

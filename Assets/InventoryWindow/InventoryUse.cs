@@ -46,7 +46,7 @@ public class InventoryUse : MonoBehaviour
                 Data.intelligence += 19;
             else if (used == "Children's Textbook")
                 Data.intelligence += 0;
-            else if (used == "Intermediate Newspaper")
+            else if (used == "Intermediate Textbook")
                 Data.intelligence += 1;
             else if (used == "Advanced Textbook")
                 Data.intelligence += 2;

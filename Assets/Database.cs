@@ -33,6 +33,7 @@ public class Database
     public int refreshTimer;
 
     public int spriteNum;
+    public int initialSalary;
 
     public Database()
     {
@@ -47,6 +48,7 @@ public class Database
         money = Data.money;
         lifetimeMoney = Data.lifetimeMoney;
         profession = Data.profession;
+        initialSalary = Data.initialSalary;
         salary = Data.salary;
 
         foodInventory = Data.foodInventory;
