@@ -23,7 +23,6 @@ public class Data : MonoBehaviour
     public static List<int> itemQuantities;
     public static List<Sprite> itemSprites;
     public static List<int> itemSpriteIndex;
-    
 
     public static string profession;
     public static int initialSalary;
@@ -129,7 +128,6 @@ public class Data : MonoBehaviour
 
         //adds the bread sprite
         foodInventorySprites.Add(foodSprites[0]);
-        
 
         foodInventory.Add("Bread");
         foodQuantities.Add(-1);
@@ -187,7 +185,6 @@ public class Data : MonoBehaviour
             ShopData.soldStatus = database.soldStatus;
             ShopData.inventoryIndices = database.inventoryIndices;
 
-
             //the purchased foods sprites
             foreach (int i in foodSpriteIndex)
                 foodInventorySprites.Add(ShopData.inventorySprites[i]);
@@ -234,7 +231,7 @@ public class Data : MonoBehaviour
             }
 
             //if the pet is old enough for evolution and has not yet evolved, then evolve and get a job
-            if(age >= 7 && spriteNum <= 3)
+            if(age >= 5 && spriteNum <= 3)
             {
                 spriteNum = UnityEngine.Random.Range(4, 10);
                 CalculateProfession();

@@ -536,6 +536,7 @@ public class Eat : MonoBehaviour
                 Data.foodQuantities.RemoveAt(index);
                 Data.foodInventory.RemoveAt(index);
                 Data.foodInventorySprites.RemoveAt(index);
+                Data.foodSpriteIndex.RemoveAt(index);
             }
             EatMenuManager.toBe--;
         }

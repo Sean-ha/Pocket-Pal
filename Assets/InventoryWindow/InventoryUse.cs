@@ -252,7 +252,7 @@ public class InventoryUse : MonoBehaviour
             }
             else if (used == "?????")
             {
-                int total = Data.strength + Data.intelligence + Data.charisma + Data.luck + 400;
+                int total = Data.strength + Data.intelligence + Data.charisma + Data.luck + 500;
                 int average = Mathf.FloorToInt(total / 4);
                 Data.strength = average;
                 Data.intelligence = average;
@@ -280,10 +280,10 @@ public class InventoryUse : MonoBehaviour
             }
             else if (used == "God's Pill")
             {
-                Data.strength += 250;
-                Data.intelligence += 250;
-                Data.charisma += 250;
-                Data.luck += 250;
+                Data.strength += 333;
+                Data.intelligence += 333;
+                Data.charisma += 333;
+                Data.luck += 333;
             }
             else if (used == "Job Application")
                 Data.CalculateProfession();
@@ -298,6 +298,7 @@ public class InventoryUse : MonoBehaviour
                 Data.itemQuantities.RemoveAt(index);
                 Data.itemInventory.RemoveAt(index);
                 Data.itemSprites.RemoveAt(index);
+                Data.itemSpriteIndex.RemoveAt(index);
 
                 //if inventory is empty after using item
                 if (Data.itemQuantities.Count == 0)
