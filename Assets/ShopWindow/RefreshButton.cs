@@ -8,7 +8,7 @@ public class RefreshButton : MonoBehaviour
 {
 
     private RewardedAd rewardedAd;
-    bool IsEarned = false;
+    private bool IsEarned = false;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +20,6 @@ public class RefreshButton : MonoBehaviour
     {
         if(IsEarned)
         {
-            Debug.Log("Bruh");
             ShopData.RefreshShop();
             ShopManager.current = 1;
             ShopManager.toBe = 0;

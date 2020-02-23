@@ -10,7 +10,7 @@ public static class SaveSystem
     {
         BinaryFormatter formatter = new BinaryFormatter();
 
-        string path = Path.Combine(Application.persistentDataPath, "data.ppp");
+        string path = Path.Combine(Application.persistentDataPath, "data.pp");
         FileStream stream = new FileStream(path, FileMode.Create);
 
         Database database = new Database();
@@ -21,7 +21,7 @@ public static class SaveSystem
 
     public static Database LoadData()
     {
-        string path = Path.Combine(Application.persistentDataPath, "data.ppp");
+        string path = Path.Combine(Application.persistentDataPath, "data.pp");
 
         if(File.Exists(path))
         {
