@@ -79,7 +79,6 @@ public class Data : MonoBehaviour
     {
         if (hunger > 100)
             hunger = 100;
-        salary = initialSalary + ((strength + intelligence + luck + charisma) / 4);
     }
 
     void PlayNextSong()
@@ -95,11 +94,12 @@ public class Data : MonoBehaviour
         {
             hunger -= hungerDecrement;
             money += salarySecs;
-            lifetimeMoney += salary / 3600.0;
+            lifetimeMoney += salarySecs;
         }
         if (weight > 0)
             weight -= weightDecrement;
         timeAliveInSecs++;
+        salary = initialSalary + ((strength + intelligence + luck + charisma) / 4);
         age = timeAliveInSecs / 86400;
     }
 
