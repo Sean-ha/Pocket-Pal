@@ -533,12 +533,12 @@ public class ShopData : MonoBehaviour
             return 21;
     }
 
-    //Returns time in seconds until the next 4th hour (0, 4, 8, 12, 16, 20, 24)
+    //Returns time in seconds until the next 4th hour (0, 4, 8, 12, 16, 20, 24) (except 1 second before e.g. 3:59:59)
     public static int getSecondsLeft()
     {
         DateTime now = DateTime.Now;
 
-        int targetSec = (((DateTime.Now.Hour / 4) + 1) * 4) * 60 * 60;
+        int targetSec = (((((DateTime.Now.Hour / 4) + 1) * 4) - 1) * 60 * 60) + 59 * 60 + 59;
         int nowSec = now.Hour * 60 * 60 + now.Minute * 60 + now.Second;
 
         return targetSec - nowSec;
