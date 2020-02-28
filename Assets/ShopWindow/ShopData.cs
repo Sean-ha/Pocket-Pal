@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -414,12 +415,11 @@ public class ShopData : MonoBehaviour
 
     void EverySecond()
     {
-        refreshTimer--;
+        refreshTimer = getSecondsLeft();
 
         if(refreshTimer == 0)
         {
             RefreshShop();
-            refreshTimer = 14400;
         }
     }
 
@@ -427,7 +427,7 @@ public class ShopData : MonoBehaviour
     {
         for(int i = 0; i < 5; i++)
         {
-            int itemIndex = Random.Range(0, inventoryNames.Count);
+            int itemIndex = UnityEngine.Random.Range(0, inventoryNames.Count);
             currentNames[i] = inventoryNames[itemIndex];
             currentCosts[i] = inventoryCosts[itemIndex];
             currentSprites[i] = returnSprite(itemIndex);
@@ -531,5 +531,16 @@ public class ShopData : MonoBehaviour
             return 20;
         else
             return 21;
+    }
+
+    //Returns time in seconds until the next 4th hour (0, 4, 8, 12, 16, 20, 24)
+    public static int getSecondsLeft()
+    {
+        DateTime now = DateTime.Now;
+
+        int targetSec = (((DateTime.Now.Hour / 4) + 1) * 4) * 60 * 60;
+        int nowSec = now.Hour * 60 * 60 + now.Minute * 60 + now.Second;
+
+        return targetSec - nowSec;
     }
 }

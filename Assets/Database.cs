@@ -34,6 +34,7 @@ public class Database
 
     public int spriteNum;
     public int initialSalary;
+    public int saveHour;
 
     public Database()
     {
@@ -50,6 +51,7 @@ public class Database
         profession = Data.profession;
         initialSalary = Data.initialSalary;
         salary = Data.salary;
+        saveHour = Data.saveHour;
 
         foodInventory = Data.foodInventory;
         foodQuantities = Data.foodQuantities;

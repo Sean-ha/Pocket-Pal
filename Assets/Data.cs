@@ -39,6 +39,7 @@ public class Data : MonoBehaviour
     public static int spriteNum;
 
     private int timesOpened = 0;
+    public static int saveHour;
 
     public AudioClip[] songs;
     AudioSource soundtrack;
@@ -106,6 +107,7 @@ public class Data : MonoBehaviour
     public void SaveGame()
     {
         saveTime = System.DateTime.Now.ToOADate();
+        saveHour = System.DateTime.Now.Hour;
         SaveSystem.SaveData();
     }
 
@@ -155,6 +157,7 @@ public class Data : MonoBehaviour
         else
         {
             int elapsedTimeSecs = (int)((loadTime - database.saveTime) * 86400);
+            int nowHour = System.DateTime.Now.Hour;
 
             age = database.age;
             strength = database.strength;
@@ -172,6 +175,7 @@ public class Data : MonoBehaviour
             timeAliveInSecs = database.timeAliveInSecs;
             salarySecs = salary / 3600.0;
             spriteNum = database.spriteNum;
+            saveHour = database.saveHour;
             ShopData.refreshTimer = database.refreshTimer;
 
             foodInventory = database.foodInventory;
@@ -223,12 +227,14 @@ public class Data : MonoBehaviour
             if (weight < 0)
                 weight = 0;
 
-            ShopData.refreshTimer -= elapsedTimeSecs;
-            if (ShopData.refreshTimer <= 0)
+            //If the time now is past the reset time
+            if(nowHour >= ((saveHour / 4) + 1) * 4)
             {
-                ShopData.refreshTimer = 14400;
                 ShopData.RefreshShop();
             }
+
+            ShopData.refreshTimer = ShopData.getSecondsLeft();
+            
 
             //if the pet is old enough for evolution and has not yet evolved, then evolve and get a job
             if(age >= 5 && spriteNum <= 3)
