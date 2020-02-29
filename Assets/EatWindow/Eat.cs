@@ -20,7 +20,7 @@ public class Eat : MonoBehaviour
         {
             Data.hunger = 100;
             Data.weight = 5;
-            Data.strength += 999;
+            Data.strength += 2500;
         }
         else if (eaten == "Baby Ice Cream")
         {
@@ -47,28 +47,28 @@ public class Eat : MonoBehaviour
         {
             Data.hunger += 75;
             Data.weight += 4;
-            Data.intelligence += 5;
+            Data.intelligence += 2;
         }
         else if (eaten == "Perfected Ice Cream")
         {
             Data.hunger = 100;
-            Data.weight += 1;
-            Data.strength += 3;
-            Data.intelligence += 3;
-            Data.charisma += 3;
-            Data.luck += 3;
+            Data.weight += 3;
+            Data.strength += 2;
+            Data.intelligence += 2;
+            Data.charisma += 2;
+            Data.luck += 2;
         }
         else if (eaten == "Common Bananas")
         {
             Data.hunger += 15;
-            Data.weight += 0.5f;
+            Data.weight += 1;
         }
         else if (eaten == "Misshapen Bananas")
             Data.hunger += 25;
         else if (eaten == "Merchant's Bananas")
         {
             Data.hunger += 25;
-            Data.weight += 0.5f;
+            Data.weight += 2;
             Data.intelligence += 1;
         }
         else if (eaten == "Ceremonial Bananas")
@@ -81,20 +81,20 @@ public class Eat : MonoBehaviour
         {
             Data.hunger += 50;
             Data.weight += 1;
-            Data.charisma += 3;
+            Data.charisma += 2;
         }
         else if (eaten == "Ascended Bananas")
         {
             Data.hunger = 100;
             Data.weight += 1;
-            Data.intelligence += 3;
-            Data.luck += 3;
+            Data.intelligence += 7;
+            Data.luck += 7;
         }
         else if (eaten == "Lewd Bananas")
         {
             Data.hunger = 100;
             Data.weight += 0.5f;
-            Data.charisma += 50;
+            Data.charisma += 55;
         }
         else if (eaten == "Suspicious Orange")
         {
@@ -112,7 +112,6 @@ public class Eat : MonoBehaviour
         {
             Data.hunger += 50;
             Data.weight += 0.5f;
-            Data.luck += 1;
         }
         else if (eaten == "Colossal Orange")
         {
@@ -124,13 +123,13 @@ public class Eat : MonoBehaviour
         {
             Data.hunger += 85;
             Data.weight += 1;
-            Data.luck += 4;
+            Data.luck += 2;
         }
         else if (eaten == "Heroic Orange")
         {
             Data.hunger = 100;
-            Data.weight += 1.2f;
-            Data.strength += 30;
+            Data.weight += 5;
+            Data.strength += 40;
             Data.intelligence += 30;
             Data.luck += 1;
             Data.charisma += 1;
@@ -141,33 +140,33 @@ public class Eat : MonoBehaviour
             Data.strength += 25;
             Data.intelligence += 25;
             Data.charisma += 25;
-            Data.luck += 25;
+            Data.luck += 35;
         }
         else if (eaten == "Donut of Wrath")
         {
             Data.hunger += 50;
-            Data.weight += 0.1f;
-            Data.strength += 52;
+            Data.weight += 2;
+            Data.strength += 55;
         }
         else if (eaten == "Donut of Truth")
         {
             Data.hunger += 50;
-            Data.weight += 0.1f;
-            Data.intelligence += 52;
+            Data.weight += 2;
+            Data.intelligence += 55;
         }
-        else if (eaten == "Donut Grapes")
+        else if (eaten == "Sacred Donut")
         {
             Data.hunger = 75;
-            Data.weight += 0.7f;
-            Data.luck += 53;
+            Data.weight += 2;
+            Data.luck += 55;
         }
-        else if (eaten == "Donut Grapes")
+        else if (eaten == "Godly Donut")
         {
             Data.hunger = 100;
-            Data.weight += 1;
-            Data.strength += 50;
+            Data.weight += 10;
+            Data.strength += 60;
             Data.luck += 50;
-            Data.intelligence += 2;
+            Data.intelligence += 5;
         }
         else if (eaten == "Stinky Pizza")
         {
@@ -177,7 +176,7 @@ public class Eat : MonoBehaviour
         else if (eaten == "Ordinary Pizza")
         {
             Data.hunger += 25;
-            Data.weight += 0.5f;
+            Data.weight += 2;
         }
         else if (eaten == "Strange Pizza")
         {
@@ -195,7 +194,6 @@ public class Eat : MonoBehaviour
         {
             Data.hunger += 50;
             Data.weight += 0.7f;
-            Data.strength += 1;
         }
         else if (eaten == "Magical Pizza")
         {
@@ -210,22 +208,22 @@ public class Eat : MonoBehaviour
         }
         else if (eaten == "Einstein's Pizza")
         {
-            Data.hunger += 40;
-            Data.weight += 1;
-            Data.intelligence += 5;
+            Data.hunger += 10;
+            Data.weight += 10;
+            Data.intelligence += 10;
         }
         else if (eaten == "16th Century Pizza")
         {
             Data.hunger = 100;
             Data.weight += 0.1f;
-            Data.strength += 5;
+            Data.strength += 10;
         }
         else if (eaten == "Mayan Pizza")
         {
             Data.hunger = 100;
             Data.weight += 1;
             Data.strength += 6;
-            Data.charisma += 5;
+            Data.charisma += 6;
         }
         else if (eaten == "Cursed Cheese")
         {
@@ -256,8 +254,6 @@ public class Eat : MonoBehaviour
         else if (eaten == "Healthy Cheese")
         {
             Data.hunger += 90;
-            Data.weight += 0.5f;
-            Data.charisma += 1;
         }
         else if (eaten == "Superior Cheese")
         {
@@ -275,16 +271,16 @@ public class Eat : MonoBehaviour
         else if (eaten == "Peter's Cheese")
         {
             Data.hunger = 100;
-            Data.weight += 1;
-            Data.strength += 2;
-            Data.intelligence += 2;
-            Data.charisma += 2;
-            Data.luck += 2;
+            Data.weight += 5;
+            Data.strength += 1;
+            Data.intelligence += 1;
+            Data.charisma += 1;
+            Data.luck += 1;
         }
         else if (eaten == "Cheese of the Heavens")
         {
             Data.hunger = 100;
-            Data.weight += 0.5f;
+            Data.weight += 40;
             Data.intelligence += 200;
             Data.charisma += 200;
             Data.luck += 200;
@@ -292,9 +288,9 @@ public class Eat : MonoBehaviour
         else if (eaten == "Legendary Cheese")
         {
             Data.hunger = 100;
-            Data.weight += 1;
+            Data.weight += 100;
             Data.strength += 500;
-            Data.luck += 250;
+            Data.luck += 300;
         }
         else if (eaten == "Bad Apple")
         {
@@ -315,24 +311,24 @@ public class Eat : MonoBehaviour
         {
             Data.hunger += 50;
             Data.weight += 0.7f;
-            Data.luck += 2;
+            Data.luck += 1;
         }
         else if (eaten == "Yummy Apple")
         {
             Data.hunger += 65;
             Data.weight += 0.6f;
-            Data.charisma += 2;
+            Data.charisma += 1;
         }
         else if (eaten == "Mysterious Apple")
         {
             Data.hunger = 100;
             Data.weight += 1.5f;
-            Data.luck += 3;
+            Data.luck += 2;
         }
         else if (eaten == "Extremely Suspicious Apple")
         {
             Data.hunger += 10;
-            Data.weight += 0.5f;
+            Data.weight += 45;
             Data.strength += 2;
             Data.intelligence += 2;
         }
@@ -340,28 +336,28 @@ public class Eat : MonoBehaviour
         {
             Data.hunger += 50;
             Data.weight += 1;
-            Data.luck += 3;
+            Data.luck += 2;
         }
         else if (eaten == "Popular Apple")
         {
             Data.hunger += 90;
             Data.weight += 2;
-            Data.charisma += 4;
+            Data.charisma += 2;
         }
         else if (eaten == "Angelic Apple")
         {
             Data.hunger = 100;
             Data.weight += 1;
-            Data.charisma += 3;
-            Data.luck += 3;
+            Data.charisma += 4;
+            Data.luck += 4;
         }
         else if (eaten == "Adam's Apple")
         {
             Data.hunger += 50;
             Data.weight += 0.3f;
-            Data.strength += 5;
-            Data.charisma += 5;
-            Data.luck += 2;
+            Data.strength += 6;
+            Data.charisma += 6;
+            Data.luck += 3;
         }
         else if (eaten == "Hard Hot Dog")
         {
@@ -383,7 +379,6 @@ public class Eat : MonoBehaviour
         {
             Data.hunger += 40;
             Data.weight += 2;
-            Data.intelligence += 1;
         }
         else if (eaten == "Forgettable Hot Dog")
             Data.hunger = 100;
@@ -391,13 +386,12 @@ public class Eat : MonoBehaviour
         {
             Data.hunger += 70;
             Data.weight += 1;
-            Data.charisma += 1;
         }
         else if (eaten == "Dreamy Hot Dog")
         {
             Data.hunger += 70;
             Data.weight += 1;
-            Data.charisma += 2;
+            Data.charisma += 1;
         }
         else if (eaten == "Best Friend")
         {
@@ -420,7 +414,7 @@ public class Eat : MonoBehaviour
         {
             Data.hunger += 10;
             Data.weight += 10;
-            Data.intelligence += 10;
+            Data.intelligence += 5;
         }
         else if (eaten == "Funky Chocolate")
         {
@@ -432,24 +426,24 @@ public class Eat : MonoBehaviour
         {
             Data.hunger += 60;
             Data.weight += 1;
-            Data.strength += 2;
+            Data.strength += 1;
         }
         else if (eaten == "Pocket Chocolate")
         {
             Data.hunger += 60;
-            Data.weight += 0.7f;
+            Data.weight += 3;
             Data.luck += 2;
         }
         else if (eaten == "Funny Chocolate")
         {
             Data.hunger += 10;
-            Data.weight += 0.1f;
-            Data.charisma += 3;
+            Data.weight += 25;
+            Data.charisma += 2;
         }
         else if (eaten == "King's Chocolate")
         {
             Data.hunger += 75;
-            Data.weight += 0.6f;
+            Data.weight += 5;
             Data.strength += 2;
             Data.charisma += 1;
         }
@@ -457,21 +451,21 @@ public class Eat : MonoBehaviour
         {
             Data.hunger = 100;
             Data.weight += 1;
-            Data.intelligence += 4;
-            Data.luck += 7;
+            Data.intelligence += 5;
+            Data.luck += 8;
         }
         else if (eaten == "Abyssal Chocolate")
         {
             Data.hunger = 100;
-            Data.weight += 0.7f;
-            Data.strength += 15;
-            Data.luck += 1;
+            Data.weight += 5;
+            Data.strength += 20;
+            Data.luck += 5;
         }
         else if (eaten == "Dragon's Chocolate")
         {
             Data.hunger = 100;
-            Data.weight += 5;
-            Data.strength += 20;
+            Data.weight += 10;
+            Data.strength += 35;
         }
         else if (eaten == "Depressed Burger")
         {
@@ -482,7 +476,7 @@ public class Eat : MonoBehaviour
         else if (eaten == "Quirky Burger")
         {
             Data.hunger += 33;
-            Data.weight += 0.87f;
+            Data.weight += 48;
             Data.charisma += 1;
             Data.strength += 1;
         }
@@ -495,34 +489,34 @@ public class Eat : MonoBehaviour
         {
             Data.hunger += 50;
             Data.weight += 1;
-            Data.intelligence += 2;
+            Data.intelligence += 1;
             Data.charisma += 1;
             Data.luck += 1;
         }
         else if (eaten == "Environmental Burger")
         {
             Data.hunger += 55;
-            Data.weight += 0.9f;
+            Data.weight += 2;
             Data.intelligence += 3;
         }
         else if (eaten == "Flying Burger")
         {
             Data.hunger += 70;
-            Data.weight += 2;
+            Data.weight += 5;
             Data.strength += 5;
-            Data.luck += 1;
+            Data.luck += 2;
         }
         else if (eaten == "Strong Burger")
         {
             Data.hunger += 70;
-            Data.weight += 3;
+            Data.weight += 6;
             Data.strength += 7;
         }
         else if (eaten == "Charming Burger")
         {
             Data.hunger += 40;
-            Data.weight += 0.2f;
-            Data.charisma += 10;
+            Data.weight += 4;
+            Data.charisma += 16;
         }
         
         //if the eaten food is not an infinite quantity food

@@ -363,7 +363,7 @@ public class ShopData : MonoBehaviour
         inventoryNames.Add("Beauty Pill");
         inventoryCosts.Add(2000);
         inventoryNames.Add("Fullness Pill");
-        inventoryCosts.Add(2500);
+        inventoryCosts.Add(100);
         inventoryNames.Add("Ancient Pill");
         inventoryCosts.Add(3000);
         inventoryNames.Add("Maiden's Pill");
@@ -380,7 +380,7 @@ public class ShopData : MonoBehaviour
         inventoryCosts.Add(4500);
         inventoryNames.Add("Tribal Pill");
         inventoryCosts.Add(5000);
-        inventoryNames.Add("The Equalizer");
+        inventoryNames.Add("Equivalence");
         inventoryCosts.Add(5555);
         inventoryNames.Add("Knight's Pill");
         inventoryCosts.Add(6000);
@@ -389,7 +389,7 @@ public class ShopData : MonoBehaviour
         inventoryNames.Add("Ultimate Pill");
         inventoryCosts.Add(9999);
         inventoryNames.Add("Transcendent Pill");
-        inventoryCosts.Add(1800);
+        inventoryCosts.Add(18000);
         inventoryNames.Add("Pill of Death");
         inventoryCosts.Add(50000);
         inventoryNames.Add("Spiritual Pill");
@@ -406,9 +406,11 @@ public class ShopData : MonoBehaviour
         inventoryCosts.Add(666666);
         inventoryNames.Add("God's Pill");
         inventoryCosts.Add(999999);
+        inventoryNames.Add("\"HELP ME.\"");
+        inventoryCosts.Add(9999999);
 
         inventoryNames.Add("Job Application");
-        inventoryCosts.Add(100000);
+        inventoryCosts.Add(50000);
 
         RefreshShop();
     }
@@ -479,7 +481,7 @@ public class ShopData : MonoBehaviour
             return inventorySprites[18];
         else if (itemIndex <= 137)
             return inventorySprites[19];
-        else if (itemIndex <= 166)
+        else if (itemIndex <= 167)
             return inventorySprites[20];
         else
             return inventorySprites[21];
@@ -527,7 +529,7 @@ public class ShopData : MonoBehaviour
             return 18;
         else if (itemIndex <= 137)
             return 19;
-        else if (itemIndex <= 166)
+        else if (itemIndex <= 167)
             return 20;
         else
             return 21;
