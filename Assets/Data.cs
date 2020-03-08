@@ -39,7 +39,6 @@ public class Data : MonoBehaviour
     public static int spriteNum;
 
     private int timesOpened = 0;
-    public static int saveHour;
 
     public AudioClip[] songs;
     AudioSource soundtrack;
@@ -107,7 +106,6 @@ public class Data : MonoBehaviour
     public void SaveGame()
     {
         saveTime = System.DateTime.Now.ToOADate();
-        saveHour = System.DateTime.Now.Hour;
         SaveSystem.SaveData();
     }
 
@@ -175,7 +173,6 @@ public class Data : MonoBehaviour
             timeAliveInSecs = database.timeAliveInSecs;
             salarySecs = salary / 3600.0;
             spriteNum = database.spriteNum;
-            saveHour = database.saveHour;
             ShopData.refreshTimer = database.refreshTimer;
 
             foodInventory = database.foodInventory;
@@ -227,8 +224,8 @@ public class Data : MonoBehaviour
             if (weight < 0)
                 weight = 0;
 
-            //If the time now is past the reset time
-            if(nowHour >= ((saveHour / 4) + 1) * 4)
+            //If enough time has passed, then reset the shop.
+            if(database.refreshTimer <= elapsedTimeSecs)
             {
                 ShopData.RefreshShop();
             }

@@ -437,6 +437,8 @@ public class ShopData : MonoBehaviour
             inventoryIndices[i] = itemIndex;
             soldStatus[i] = false;
         }
+        ShopManager.toBe = 0;
+        ShopManager.current = 1;
     }
 
     public static Sprite returnSprite(int itemIndex)

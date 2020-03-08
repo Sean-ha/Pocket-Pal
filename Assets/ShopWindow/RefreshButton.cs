@@ -21,8 +21,6 @@ public class RefreshButton : MonoBehaviour
         if(IsEarned)
         {
             ShopData.RefreshShop();
-            ShopManager.current = 1;
-            ShopManager.toBe = 0;
             IsEarned = false;
         }
     }
