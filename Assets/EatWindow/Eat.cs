@@ -9,6 +9,7 @@ public class Eat : MonoBehaviour
         int index = EatMenuManager.current;
         string eaten = Data.foodInventory[index];
 
+        //Checks the food that was eaten, and adds stats accordingly.
         if(eaten == "Bread")
         {
             Data.hunger += 12;
@@ -395,8 +396,8 @@ public class Eat : MonoBehaviour
         }
         else if (eaten == "Best Friend")
         {
-            Data.charisma += 2;
-            Data.luck += 2;
+            Data.hunger = 0;
+            Data.bestFriendNum--;
         }
         else if (eaten == "Enchanting Hot Dog")
         {

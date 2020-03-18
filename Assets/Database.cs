@@ -35,6 +35,8 @@ public class Database
     public int spriteNum;
     public int initialSalary;
 
+    public int bestFriendNum;
+
     public Database()
     {
         age = Data.age;
@@ -70,5 +72,6 @@ public class Database
         refreshTimer = ShopData.refreshTimer;
 
         spriteNum = Data.spriteNum;
+        bestFriendNum = Data.bestFriendNum;
     }
 }

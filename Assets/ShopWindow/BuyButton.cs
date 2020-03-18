@@ -9,6 +9,8 @@ public class BuyButton : MonoBehaviour
         AudioSource audio = gameObject.AddComponent<AudioSource>();
         audio.PlayOneShot((AudioClip)Resources.Load("sounds/click"));
         int curr = ShopManager.toBe;
+
+        //If the player can buy the item
         if (!ShopData.soldStatus[curr] && Data.money >= ShopData.currentCosts[curr])
         {
             
@@ -21,6 +23,9 @@ public class BuyButton : MonoBehaviour
             ShopData.currentSpriteIndex[curr] = 22;
 
             string boughtItemName = ShopData.currentNames[curr];
+
+            if (boughtItemName == "Best Friend")
+                Data.bestFriendNum++;
 
             //totalIndex represents the position in the total inventory list that the item is in.
             int totalIndex = ShopData.inventoryIndices[curr];

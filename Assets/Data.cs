@@ -37,6 +37,7 @@ public class Data : MonoBehaviour
 
     public static Sprite[] petSprites;
     public static int spriteNum;
+    public static int bestFriendNum = 0;
 
     private int timesOpened = 0;
 
@@ -45,6 +46,7 @@ public class Data : MonoBehaviour
 
     private void Awake()
     {
+        //Ensures that there is only one instance of "Data" at a time.
         if (instance != null && instance != this)
         {
             Destroy(this.gameObject);
@@ -59,6 +61,7 @@ public class Data : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Initial values, necessary calls at the beginning.
         DontDestroyOnLoad(this.gameObject);
         hungerDecrement = 100.0 / 86400.0;
         weightDecrement = 1.0 / 3600.0;
@@ -77,10 +80,14 @@ public class Data : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Ensures certain values never go above/below a certain point.
+        if (bestFriendNum < 0)
+            bestFriendNum = 0;
         if (hunger > 100)
             hunger = 100;
     }
 
+    //Plays a random song in the playlist. After the song finishes, do it again.
     void PlayNextSong()
     {
         soundtrack.clip = songs[UnityEngine.Random.Range(0, songs.Length)];
@@ -88,6 +95,7 @@ public class Data : MonoBehaviour
         Invoke("PlayNextSong", soundtrack.clip.length);
     }
 
+    //Adjusts stats every second (e.g. hunger decreases every second)
     void EverySecond()
     {
         if (hunger > 0)
@@ -99,16 +107,18 @@ public class Data : MonoBehaviour
         if (weight > 0)
             weight -= weightDecrement;
         timeAliveInSecs++;
-        salary = initialSalary + ((strength + intelligence + luck + charisma) / 4);
+        salary = initialSalary + ((strength + intelligence + luck + charisma) / 4) + bestFriendNum * 5;
         age = timeAliveInSecs / 86400;
     }
 
+    //Simply saves the game. This is called every second and when the game is closed.
     public void SaveGame()
     {
         saveTime = System.DateTime.Now.ToOADate();
         SaveSystem.SaveData();
     }
 
+    //Loads the game. Called on start, and when app is brought to foreground.
     public static void LoadGame()
     {
         double loadTime = System.DateTime.Now.ToOADate();
@@ -132,6 +142,7 @@ public class Data : MonoBehaviour
         foodInventory.Add("Bread");
         foodQuantities.Add(-1);
 
+        //If this is the first time opening the game
         if (database == null)
         {
             age = 0;
@@ -148,6 +159,7 @@ public class Data : MonoBehaviour
             initialSalary = 100;
             timeAliveInSecs = 0;
             salarySecs = salary / 3600.0;
+            bestFriendNum = 0;
             spriteNum = UnityEngine.Random.Range(1, 4);
 
             SceneManager.LoadScene("EnterName");
@@ -157,6 +169,7 @@ public class Data : MonoBehaviour
             int elapsedTimeSecs = (int)((loadTime - database.saveTime) * 86400);
             int nowHour = System.DateTime.Now.Hour;
 
+            //Loads all the stats from the saved file.
             age = database.age;
             strength = database.strength;
             intelligence = database.intelligence;
@@ -174,6 +187,7 @@ public class Data : MonoBehaviour
             salarySecs = salary / 3600.0;
             spriteNum = database.spriteNum;
             ShopData.refreshTimer = database.refreshTimer;
+            bestFriendNum = database.bestFriendNum;
 
             foodInventory = database.foodInventory;
             foodQuantities = database.foodQuantities;
@@ -186,7 +200,7 @@ public class Data : MonoBehaviour
             ShopData.soldStatus = database.soldStatus;
             ShopData.inventoryIndices = database.inventoryIndices;
 
-            //the purchased foods sprites
+            //Loads the purchased foods sprites
             foreach (int i in foodSpriteIndex)
                 foodInventorySprites.Add(ShopData.inventorySprites[i]);
 
@@ -199,14 +213,14 @@ public class Data : MonoBehaviour
 
             itemSprites.Clear();
 
-            //inserts sprites for purchased items
+            //Inserts sprites for purchased items
             foreach (int i in itemSpriteIndex)
                 itemSprites.Add(ShopData.inventorySprites[i]);
 
             double hungerBeforeUpdate = hunger;
             double timeBeforeHungerReachedZero = elapsedTimeSecs;
 
-            //update stats based on offline time calculations:
+            //Update stats based on offline time calculations:
             timeAliveInSecs += elapsedTimeSecs;
 
             hunger -= hungerDecrement * elapsedTimeSecs;
@@ -233,19 +247,20 @@ public class Data : MonoBehaviour
             ShopData.refreshTimer = ShopData.getSecondsLeft();
             
 
-            //if the pet is old enough for evolution and has not yet evolved, then evolve and get a job
+            //If the pet is old enough for evolution and has not yet evolved, then evolve and get a job
             if(age >= 5 && spriteNum <= 3)
             {
                 spriteNum = UnityEngine.Random.Range(4, 10);
                 CalculateProfession();
             }
         }
+        //Loads pet sprites
         petSprites = Resources.LoadAll<Sprite>("pets/pet_" + spriteNum);
     }
 
     private void OnApplicationPause(bool pause)
     {
-        //when user closes app
+        //When user closes app
         if(pause)
         {
             SaveGame();
@@ -254,7 +269,7 @@ public class Data : MonoBehaviour
 
     private void OnApplicationFocus(bool focus)
     {
-        //when the user opens the app
+        //When the user opens the app
         if(focus && timesOpened != 0)
         {
             LoadGame();
@@ -264,6 +279,7 @@ public class Data : MonoBehaviour
         }
     }
 
+    //Calculates the pet's profession from their highest two stats.
     public static void CalculateProfession()
     {
         if (strength >= intelligence && strength >= luck && strength >= charisma)
@@ -350,6 +366,7 @@ public class Data : MonoBehaviour
                 initialSalary = 575;
             }
         }
+        //Pet's salary is increased based on their stats.
         salary = initialSalary + ((strength + intelligence + luck + charisma) / 4);
     }
 }

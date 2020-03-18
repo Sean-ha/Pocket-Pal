@@ -22,6 +22,7 @@ public class ShopData : MonoBehaviour
 
     private void Awake()
     {
+        //Ensures there will only be one instance of "ShopData" ever.
         if (instance != null && instance != this)
         {
             Destroy(this.gameObject);
@@ -52,6 +53,8 @@ public class ShopData : MonoBehaviour
         inventoryIndices = new int[5];
         soldStatus = new bool[5];
 
+
+        //Adds items to the list of possible items, along with their cost.
         inventoryNames.Add("Bean");
         inventoryCosts.Add(10);
         inventoryNames.Add("The Mighty Bean");
@@ -415,6 +418,7 @@ public class ShopData : MonoBehaviour
         RefreshShop();
     }
 
+    //Every second, check the remaining time until refresh. If it is zero, refresh.
     void EverySecond()
     {
         refreshTimer = getSecondsLeft();
@@ -425,6 +429,7 @@ public class ShopData : MonoBehaviour
         }
     }
 
+    //Refreshes the shop with 5 random items. 
     public static void RefreshShop()
     {
         for(int i = 0; i < 5; i++)
@@ -441,6 +446,7 @@ public class ShopData : MonoBehaviour
         ShopManager.current = 1;
     }
 
+    //Returns the corresponding sprite given the item's number.
     public static Sprite returnSprite(int itemIndex)
     {
         if (itemIndex <= 1)
@@ -489,6 +495,7 @@ public class ShopData : MonoBehaviour
             return inventorySprites[21];
     }
 
+    //Returns the corresponding sprite index given the item's number
     public static int returnSpriteIndex(int itemIndex)
     {
         if (itemIndex <= 1)

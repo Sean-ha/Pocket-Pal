@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class InventoryUse : MonoBehaviour
 {
+    //The user clicks the "use" button
     private void OnMouseUp()
     {
+        //Play the sound effect of the click
         AudioSource audio = gameObject.AddComponent<AudioSource>();
         audio.PlayOneShot((AudioClip)Resources.Load("sounds/click"));
         if (!InventoryManager.empty)
@@ -13,6 +15,7 @@ public class InventoryUse : MonoBehaviour
             int index = InventoryManager.current;
             string used = Data.itemInventory[index];
 
+            //Checks what the item used was, and does something accordingly.
             if (used == "Light Dumbbell")
                 Data.strength += 1;
             else if (used == "Huge Dumbbell")

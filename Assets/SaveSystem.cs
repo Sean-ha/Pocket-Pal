@@ -10,11 +10,13 @@ public static class SaveSystem
     {
         BinaryFormatter formatter = new BinaryFormatter();
 
+        //Path of save file. "persistentDataPath" differs depending on the OS.
         string path = Path.Combine(Application.persistentDataPath, "data.pp");
         FileStream stream = new FileStream(path, FileMode.Create);
 
         Database database = new Database();
 
+        //Stores the data in a binary file
         formatter.Serialize(stream, database);
         stream.Close();
     }
