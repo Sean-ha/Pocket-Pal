@@ -112,7 +112,7 @@ public class Data : MonoBehaviour
     }
 
     //Simply saves the game. This is called every second and when the game is closed.
-    public void SaveGame()
+    public static void SaveGame()
     {
         saveTime = System.DateTime.Now.ToOADate();
         SaveSystem.SaveData();
@@ -252,6 +252,7 @@ public class Data : MonoBehaviour
             {
                 spriteNum = UnityEngine.Random.Range(4, 10);
                 CalculateProfession();
+                SaveGame();
             }
         }
         //Loads pet sprites
